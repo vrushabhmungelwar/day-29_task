@@ -1,25 +1,63 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useHistory } from "react-router-dom";
+import Button from "@mui/material/Button";
+import { Switch, Route } from "react-router-dom";
+import { AppBar, Toolbar } from "@mui/material";
+import { Home } from "./Home";
+import { Success } from "./success";
+import { SignUp } from "./createUser";
+import { Users } from "./UsersList";
+import { UserInfo } from "./userInfo";
+import { Edit } from "./editUser";
 
-function App() {
+export default function App() {
+  const history = useHistory();
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <AppBar
+        position="static"
+        style={{ marginBottom: "24px" }}
+        color="transparent"
+      >
+        <Toolbar>
+          <Button
+            variant="text"
+            color="inherit"
+            onClick={() => history.push("/signUp")}
+          >
+            Create User
+          </Button>
+
+          <Button
+            variant="text"
+            color="inherit"
+            onClick={() => history.push("/usersList")}
+          >
+            List Users
+          </Button>
+        </Toolbar>
+      </AppBar>
+
+      <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route path="/signUp">
+          <SignUp />
+        </Route>
+        <Route path="/success">
+          <Success />
+        </Route>
+        <Route path="/usersList">
+          <Users />
+        </Route>
+        <Route path="/UserInfo/:index">
+          <UserInfo />
+        </Route>
+        <Route path="/movies/edit/:index">
+          <Edit />
+        </Route>
+      </Switch>
     </div>
   );
 }
-
-export default App;
