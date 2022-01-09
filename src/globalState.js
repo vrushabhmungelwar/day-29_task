@@ -3,7 +3,14 @@ import { AppReducer } from "./context";
 
 // Initial State
 const initialState = {
-  users: [],
+  users: [
+    {
+      name: "John Doe",
+      email: "johndoe@gmail.com",
+      password: "john12345",
+      id: "jjthomson"
+    },
+  ],
 };
 
 // Create Context

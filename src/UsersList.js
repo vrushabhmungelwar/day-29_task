@@ -6,9 +6,10 @@ import { GlobalContext } from "./globalState";
 import { useContext } from "react";
 import EditIcon from "@mui/icons-material/Edit";
 import InfoIcon from "@mui/icons-material/Info";
-const CartItem = ({ user, index }) => {
+import DeleteIcon from "@mui/icons-material/Delete";
+const CartItem = ({ user, index, remove }) => {
   const history = useHistory();
-
+  // console.log(user);
   return (
     <div className="cart-content-child">
       <ListItem>
@@ -28,19 +29,22 @@ const CartItem = ({ user, index }) => {
         >
           <EditIcon />
         </Button>
+        <Button variant="text" color="inherit" onClick={() => remove(user.id)}>
+          <DeleteIcon />
+        </Button>
       </ListItem>
     </div>
   );
 };
 export function Users() {
-  const { users } = useContext(GlobalContext);
+  const { users, removeUser } = useContext(GlobalContext);
 
   return (
     <List>
       <div className="list">
-      <h1>User List</h1>
+        <h1>User List</h1>
         {users.map((item, index) => (
-          <CartItem user={item} key={index} index={index} />
+          <CartItem user={item} key={index} index={index} remove={removeUser} />
         ))}
       </div>
     </List>

@@ -11,8 +11,8 @@ export function UserInfo() {
 
   return (
     <div>
-    <h1>Profile</h1>
-      <h4>Name:  {userinfo.name}</h4>
+      <h1>Profile</h1>
+      <h4>Name: {userinfo.name}</h4>
       <h5>Email: {userinfo.email}</h5>
     </div>
   );

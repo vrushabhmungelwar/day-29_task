@@ -11,7 +11,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
-// import { useDispatchCart } from "./context";
+import { v4 as uuid } from "uuid";
 
 export const formValidationSchema = yup.object({
   name: yup
@@ -32,25 +32,19 @@ export const formValidationSchema = yup.object({
 
 export function SignUp() {
   const theme = createTheme();
-  // const dispatch = useDispatchCart();
   const { addUser } = useContext(GlobalContext);
   const history = useHistory();
 
   const { handleSubmit, handleChange, values, handleBlur, errors, touched } =
     useFormik({
-      initialValues: { name: "", email: "", password: "" },
+      initialValues: { name: "", email: "", password: "", id: uuid() },
       validationSchema: formValidationSchema,
+
       onSubmit: (values) => {
-        // createUser(values);
         addUser(values);
         history.push("/success");
       },
     });
-
-  // const createUser = (item) => {
-  //   console.log(item);
-  //   // dispatch({ type: "ADD", item });
-  // };
 
   return (
     <ThemeProvider theme={theme}>

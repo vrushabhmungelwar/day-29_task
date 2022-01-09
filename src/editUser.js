@@ -22,18 +22,17 @@ export function Edit() {
   const { index } = useParams();
 
   const userinfo = users[index];
-  console.log(userinfo);
   const { handleSubmit, handleChange, values, handleBlur, errors, touched } =
     useFormik({
       initialValues: {
         name: userinfo.name,
         email: userinfo.email,
         password: userinfo.password,
+        id: userinfo.id,
       },
       validationSchema: formValidationSchema,
-      onSubmit: (updatedMovie) => {
-        console.log("onSubmit", updatedMovie);
-        editUser(updatedMovie);
+      onSubmit: (values) => {
+        editUser(values);
         history.push("/usersList");
       },
     });
